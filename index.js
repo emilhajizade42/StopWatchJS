@@ -14,28 +14,22 @@ setInterval(() => {
 
 startButton.addEventListener("click", function (e) {
   isStop = false;
-  resetButton.setAttribute("disabled", "");
-  startButton.setAttribute("disabled", "");
-  stopButton.removeAttribute("disabled");
-  resetButton.removeAttribute("disabled");
+  [startButton,resetButton].forEach(item => item.setAttribute("disabled", ""));
+  [stopButton,resetButton].forEach(item => item.removeAttribute("disabled"));
 });
 
 stopButton.addEventListener("click", function (e) {
   isStop = true;
   stopButton.setAttribute("disabled", "");
-  resetButton.removeAttribute("disabled");
-  startButton.removeAttribute("disabled");
+  [startButton,resetButton].forEach(item => item.removeAttribute("disabled"));
 });
 
 resetButton.addEventListener("click", function (e) {
   if (!stopButton.hasAttribute('disabled')) {
-    resetButton.removeAttribute("disabled");
-    stopButton.removeAttribute("disabled");
+    [stopButton,resetButton].forEach(item => item.removeAttribute("disabled"));
   }
   else{
-    startButton.removeAttribute("disabled");
-    resetButton.removeAttribute("disabled");
-    stopButton.removeAttribute("disabled");
+    [startButton,stopButton,resetButton].forEach(item => item.removeAttribute("disabled"));
   }
   
   time = 0;
