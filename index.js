@@ -28,9 +28,16 @@ stopButton.addEventListener("click", function (e) {
 });
 
 resetButton.addEventListener("click", function (e) {
-  resetButton.removeAttribute("disabled");
-  startButton.removeAttribute("disabled");
-  stopButton.removeAttribute("disabled");
+  if (!stopButton.hasAttribute('disabled')) {
+    resetButton.removeAttribute("disabled");
+    stopButton.removeAttribute("disabled");
+  }
+  else{
+    startButton.removeAttribute("disabled");
+    resetButton.removeAttribute("disabled");
+    stopButton.removeAttribute("disabled");
+  }
+  
   time = 0;
   timer.innerHTML = millisToMinutesAndSeconds(time);
 });
