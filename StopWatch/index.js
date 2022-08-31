@@ -7,27 +7,31 @@ let time = 0;
 let isStop = true;
 
 setInterval(() => {
-  !isStop ? time+=10 : time;
-  timer.innerHTML = millisToMinutesAndSeconds(time)
+  !isStop ? (time += 10) : time;
+  timer.innerHTML = millisToMinutesAndSeconds(time);
 }, 1);
 
 startButton.addEventListener("click", function (e) {
   isStop = false;
-  [startButton,resetButton].forEach(item => item.setAttribute("disabled", ""));
-  [stopButton].forEach(item => item.removeAttribute("disabled"));
+  [startButton, resetButton].forEach((item) =>
+    item.setAttribute("disabled", "")
+  );
+  [stopButton].forEach((item) => item.removeAttribute("disabled"));
 });
 
 stopButton.addEventListener("click", function (e) {
   isStop = true;
   stopButton.setAttribute("disabled", "");
-  [startButton,resetButton].forEach(item => item.removeAttribute("disabled"));
+  [startButton, resetButton].forEach((item) =>
+    item.removeAttribute("disabled")
+  );
 });
 
 resetButton.addEventListener("click", function (e) {
+  [stopButton, resetButton].forEach((item) =>
+    item.setAttribute("disabled", "")
+  );
 
-    [stopButton,resetButton].forEach(item => item.setAttribute("disabled", ""));
- 
-  
   time = 0;
   timer.innerHTML = millisToMinutesAndSeconds(time);
 });
